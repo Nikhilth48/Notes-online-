@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: #fefefe;
+  color: #111;
+  transition: background 0.3s, color 0.3s;
+}
+
+.notes-app {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar h2 {
+  margin-bottom: 16px;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+#notes-list {
+  list-style: none;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-left: 0;
+}
+#notes-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#notes-list li:hover,
+#notes-list li.active {
+  background: #e0e0e0;
+}
+.delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #ff5555;
+  cursor: pointer;
+}
+.delete-btn:hover {
+  color: red;
+}
+
+.note-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.note-form input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.note-form button {
+  background: #007aff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.note-viewer {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.toolbar button {
+  padding: 6px 10px;
+  font-size: 1rem;
+  background: #ddd;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.toolbar button:hover {
+  background: #ccc;
+}
+#editor {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  overflow-y: auto;
+  outline: none;
+  background: #fff;
+}
+#editor:empty:before {
+  content: attr(placeholder);
+  color: #999;
+  pointer-events: none;
+}
+
+body.dark {
+  background: #1e1e1e;
+  color: #eee;
+}
+body.dark .sidebar {
+  background: #2c2c2c;
+}
+body.dark #notes-list li:hover,
+body.dark #notes-list li.active {
+  background: #444;
+}
+body.dark .note-form input,
+body.dark #editor,
+body.dark .toolbar button {
+  background: #333;
+  color: #eee;
+  border-color: #555;
+}
+body.dark .note-form button {
+  background: #555;
+}
+body.dark #theme-toggle {
+  background: #444;
+  color: white;
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  font-size: 18px;
+  padding: 8px;
+  border: none;
+  border-radius: 50%;
+  background: #eee;
+  cursor: pointer;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="notes-app">
+    <div class="sidebar">
+      <h2>📁 Notes</h2>
+      <ul id="notes-list">
+        {% for note in notes %}
+        <li>
+          <span onclick="selectNote({{ loop.index0 }})">{{ note|safe }}</span>
+          <button class="delete-btn" onclick="deleteNote({{ loop.index0 }}, event)">🗑️</button>
+        </li>
+        {% endfor %}
+      </ul>
+      <form action="/add" method="POST" class="note-form" onsubmit="return addNote(event)">
+        <input type="text" name="note" id="new-note" placeholder="New note..." required>
+        <button type="submit">＋</button>
+      </form>
+    </div>
+
+    <div class="note-viewer">
+      <div class="toolbar">
+        <button onclick="format('bold')"><b>B</b></button>
+        <button onclick="format('insertParagraph')">P</button>
+        <button onclick="format('formatBlock', '<h2>')">H2</button>
+        <button onclick="format('backColor', 'yellow')">🖍</button>
+      </div>
+      <div id="editor" contenteditable="true" placeholder="Select or create a note..."></div>
+    </div>
+  </div>
+
+  <button id="theme-toggle" title="Toggle Light/Dark Mode">☾</button>
+
+  <script>
+    const notesData = {{ notes | tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
